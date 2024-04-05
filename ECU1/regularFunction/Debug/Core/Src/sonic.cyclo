@@ -1,0 +1,4 @@
+../Core/Src/sonic.c:17:6:delay	2
+../Core/Src/sonic.c:23:6:HAL_TIM_IC_CaptureCallback	6
+../Core/Src/sonic.c:60:6:Sonic_Read	1
+../Core/Src/sonic.c:69:9:CheckSonicClose	2
