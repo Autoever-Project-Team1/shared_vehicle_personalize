@@ -1,0 +1,3 @@
+../Core/Src/IO/SWITCH/switch.c:3:6:Switch_Init	8	static
+../Core/Src/IO/SWITCH/switch.c:9:9:Switch_GetState1	24	static
+../Core/Src/IO/SWITCH/switch.c:26:9:Switch_GetState2	24	static

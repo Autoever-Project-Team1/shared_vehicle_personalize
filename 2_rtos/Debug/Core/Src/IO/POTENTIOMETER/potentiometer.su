@@ -1,0 +1,2 @@
+../Core/Src/IO/POTENTIOMETER/potentiometer.c:7:10:PotmapValue	24	static
+../Core/Src/IO/POTENTIOMETER/potentiometer.c:11:10:updatePotPWM	32	static

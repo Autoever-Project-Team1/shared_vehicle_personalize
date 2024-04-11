@@ -1,0 +1,5 @@
+../Core/Src/freertos.c:101:6:MX_FREERTOS_Init	16	static
+../Core/Src/freertos.c:150:6:FsideMirrorTask	16	static
+../Core/Src/freertos.c:176:6:FheadLightTask	16	static
+../Core/Src/freertos.c:204:6:FcheckPacketTask	32	static
+../Core/Src/freertos.c:251:6:vTimerBlinkLEDCallback	16	static

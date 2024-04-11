@@ -1,0 +1,3 @@
+../Core/Src/IO/JOYSTICK/joystick.c:4:10:mapValue	24	static
+../Core/Src/IO/JOYSTICK/joystick.c:8:9:checkJoystickState	16	static
+../Core/Src/IO/JOYSTICK/joystick.c:36:10:updateJoystickPWM	32	static

@@ -1,0 +1,10 @@
+../Core/Src/PROTOCOL/protocol.c:22:6:Uart_Init	8	static
+../Core/Src/PROTOCOL/protocol.c:28:6:Comm_UartWrite	32	static
+../Core/Src/PROTOCOL/protocol.c:42:6:Uart_Handler	8	static
+../Core/Src/PROTOCOL/protocol.c:63:6:Check_Protocol	8	static
+../Core/Src/PROTOCOL/protocol.c:116:6:TestProtocol	8	static
+../Core/Src/PROTOCOL/protocol.c:149:6:Send_sideMirror	16	static
+../Core/Src/PROTOCOL/protocol.c:157:9:Check_CloseState	8	static
+../Core/Src/PROTOCOL/protocol.c:172:9:Check_KeyState	8	static
+../Core/Src/PROTOCOL/protocol.c:187:9:Receieve_UDsideMirror	8	static
+../Core/Src/PROTOCOL/protocol.c:197:9:Receieve_RLsideMirror	8	static
