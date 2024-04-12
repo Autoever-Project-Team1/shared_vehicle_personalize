@@ -1,0 +1,8 @@
+../Core/Src/scheduling.c:11:6:Scheduling_Init	16	static
+../Core/Src/scheduling.c:16:6:HAL_TIM_PeriodElapsedCallback	16	static
+../Core/Src/scheduling.c:45:6:TaskScheduling	8	static
+../Core/Src/scheduling.c:74:6:Task1ms	8	static
+../Core/Src/scheduling.c:145:6:Task10ms	8	static
+../Core/Src/scheduling.c:164:6:Task100ms	8	static
+../Core/Src/scheduling.c:194:6:Task150ms	8	static
+../Core/Src/scheduling.c:280:6:Task1000ms	8	static
