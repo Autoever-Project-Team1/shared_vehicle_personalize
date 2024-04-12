@@ -1,0 +1,5 @@
+../Core/Src/sonic.c:19:6:delay	16	static
+../Core/Src/sonic.c:25:6:HAL_TIM_IC_CaptureCallback	16	static
+../Core/Src/sonic.c:62:6:Sonic_Read	8	static
+../Core/Src/sonic.c:71:9:CheckSonicClose	8	static
+../Core/Src/sonic.c:83:6:Sonic_Init	16	static
