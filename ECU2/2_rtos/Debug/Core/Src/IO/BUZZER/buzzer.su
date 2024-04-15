@@ -1,0 +1,3 @@
+../Core/Src/IO/BUZZER/buzzer.c:10:6:buzzer_init	8	static
+../Core/Src/IO/BUZZER/buzzer.c:15:6:beep	32	static
+../Core/Src/IO/BUZZER/buzzer.c:36:6:welcomesound	8	static
