@@ -8,7 +8,8 @@ void Switch_Init(void) {
 // About LCD BUTTON
 uint8_t Switch_GetState1(void) {
     static uint8_t prevButtonState = GPIO_PIN_SET; // Assume button is not pressed initially
-    uint8_t buttonState = HAL_GPIO_ReadPin(sideMirror_Joystick_Switch_GPIO_Port, sideMirror_Joystick_Switch_Pin); // Read the current button state
+//    uint8_t buttonState = HAL_GPIO_ReadPin(sideMirror_Joystick_Switch_GPIO_Port, sideMirror_Joystick_Switch_Pin); // Read the current button state
+    uint8_t buttonState = HAL_GPIO_ReadPin(test_SW_GPIO_Port, test_SW_Pin); // Read the current button state
 
     if(buttonState == GPIO_PIN_RESET && prevButtonState == GPIO_PIN_SET) {
         // Button was just pressed
@@ -25,8 +26,8 @@ uint8_t Switch_GetState1(void) {
 // About HeadLight Button
 uint8_t Switch_GetState2(void) {
     static uint8_t prevButtonState = GPIO_PIN_SET; // Assume button is not pressed initially
-//    uint8_t buttonState = HAL_GPIO_ReadPin(headLight_SW_start_GPIO_Port, headLight_SW_start_Pin); // Read the current button state
-    uint8_t buttonState = HAL_GPIO_ReadPin(test_SW_GPIO_Port, test_SW_Pin); // Read the current button state
+    uint8_t buttonState = HAL_GPIO_ReadPin(headLight_SW_start_GPIO_Port, headLight_SW_start_Pin); // Read the current button state
+//    uint8_t buttonState = HAL_GPIO_ReadPin(test_SW_GPIO_Port, test_SW_Pin); // Read the current button state
 
     if(buttonState == GPIO_PIN_RESET && prevButtonState == GPIO_PIN_SET) {
         // Button was just pressed

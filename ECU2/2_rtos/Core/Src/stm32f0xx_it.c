@@ -123,9 +123,10 @@ void TIM16_IRQHandler(void)
 void USART3_8_IRQHandler(void)
 {
   /* USER CODE BEGIN USART3_8_IRQn 0 */
-	Uart_Handler();
+//	Uart_Handler();
   /* USER CODE END USART3_8_IRQn 0 */
   /* USER CODE BEGIN USART3_8_IRQn 1 */
+	Uart_Handler();
   /* USER CODE END USART3_8_IRQn 1 */
 }
 

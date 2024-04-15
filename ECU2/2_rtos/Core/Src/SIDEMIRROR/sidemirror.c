@@ -1,5 +1,5 @@
+#include <IO/LCD/lcd.h>
 #include "SIDEMIRROR/sidemirror.h"
-#include "IO/LCD/I2C_LCD.h"
 #include "IO/JOYSTICK/joystick.h"
 #include "PROTOCOL/protocol.h"
 
@@ -11,7 +11,7 @@
 uint32_t Adc_val[ADC_CHANNEL_NUMS] = {0};
 uint32_t Joystick_val[2] = {0};
 uint8_t joystick_state = 0;
-SideMirrorMotorPWM SideMirrorPWM = {0, 0};
+SideMirrorMotorPWM SideMirrorPWM = {70, 72};
 
 uint8_t GuideLine_seq = 0;
 
@@ -58,7 +58,6 @@ void LoadUserSettings(void) {
 	SideMirrorPWM.motorY_pwm = Receieve_RLsideMirror();
 	*(&TIM1->CCR1) = SideMirrorPWM.motorX_pwm;
 	*(&TIM1->CCR2) = SideMirrorPWM.motorY_pwm;
-
 }
 
 // LCD 가이드라인 표시
@@ -68,89 +67,19 @@ void DisplayGuideline(void) {
         I2C_LCD_Display(I2C_LCD_1);
         GuideLine_seq++;
         if (GuideLine_seq > SEQ_3) {
-        	GuideLine_seq = IDLE;
+        	GuideLine_seq = 0;
         }
     }
     I2C_LCD_GUIDELINE(GuideLine_seq); // Display the current step on the LCD
 }
 
-void I2C_LCD_GUIDELINE(uint8_t now_seq)
+void InitCarSetting(void)
 {
-    static uint8_t last_seq = 255; // 이전에 표시된 seq 값을 저장하는 변수, 임의의 초기값 설정
-
-    // 현재 seq 값이 이전과 다른 경우에만 화면을 업데이트
-    if (last_seq != now_seq)
-    {
-        last_seq = now_seq; // 현재 seq 값을 last_seq에 저장
-        I2C_LCD_Clear(I2C_LCD_1); // LCD 화면 클리어
-
-        // LED 제어 로직 추가
-        // 상하 LED 2개
-        if (now_seq == SEQ_2)
-        {
-            HAL_GPIO_WritePin(sideMirror_LED_U_GPIO_Port, sideMirror_LED_U_Pin, GPIO_PIN_SET); // LED_U 켜기
-            HAL_GPIO_WritePin(sideMirror_LED_D_GPIO_Port, sideMirror_LED_D_Pin, GPIO_PIN_SET); // LED_D 켜기
-            HAL_GPIO_WritePin(sideMirror_LED_R_GPIO_Port, sideMirror_LED_R_Pin, GPIO_PIN_RESET); // LED_R 끄기
-            HAL_GPIO_WritePin(sideMirror_LED_L_GPIO_Port, sideMirror_LED_L_Pin, GPIO_PIN_RESET); // LED_L 끄기
-        }
-        // 좌우 LED 2개
-        else if (now_seq == SEQ_3)
-        {
-            HAL_GPIO_WritePin(sideMirror_LED_U_GPIO_Port, sideMirror_LED_U_Pin, GPIO_PIN_RESET); // LED_U 끄기
-            HAL_GPIO_WritePin(sideMirror_LED_D_GPIO_Port, sideMirror_LED_D_Pin, GPIO_PIN_RESET); // LED_D 끄기
-            HAL_GPIO_WritePin(sideMirror_LED_R_GPIO_Port, sideMirror_LED_R_Pin, GPIO_PIN_SET); // LED_R 켜기
-            HAL_GPIO_WritePin(sideMirror_LED_L_GPIO_Port, sideMirror_LED_L_Pin, GPIO_PIN_SET); // LED_L 켜기
-        }
-        else
-        {
-            // 나머지 상태에서는 모든 LED 끄기
-            HAL_GPIO_WritePin(sideMirror_LED_U_GPIO_Port, sideMirror_LED_U_Pin, GPIO_PIN_RESET); // LED_U 끄기
-            HAL_GPIO_WritePin(sideMirror_LED_D_GPIO_Port, sideMirror_LED_D_Pin, GPIO_PIN_RESET); // LED_D 끄기
-            HAL_GPIO_WritePin(sideMirror_LED_R_GPIO_Port, sideMirror_LED_R_Pin, GPIO_PIN_RESET); // LED_R 켜기
-            HAL_GPIO_WritePin(sideMirror_LED_L_GPIO_Port, sideMirror_LED_L_Pin, GPIO_PIN_RESET); // LED_L 켜기
-        }
-
-        // now_seq 값에 따른 메시지 표시
-        switch (now_seq)
-        {
-			case SEQ_0:
-				I2C_LCD_NoBacklight(I2C_LCD_1);
-				I2C_LCD_NoDisplay(I2C_LCD_1);
-				break;
-
-            case SEQ_1:
-            	I2C_LCD_Backlight(I2C_LCD_1);
-                I2C_LCD_SetCursor(I2C_LCD_1, 0, 0);
-                I2C_LCD_WriteString(I2C_LCD_1, "SIDEMIRROR GUIDELINE ");
-                I2C_LCD_SetCursor(I2C_LCD_1, 0, 1);
-                I2C_LCD_WriteString(I2C_LCD_1, "IF YOU READY ");
-                I2C_LCD_SetCursor(I2C_LCD_1, 0, 2);
-                I2C_LCD_WriteString(I2C_LCD_1, "PUSH BUTTON");
-                break;
-            case SEQ_2:
-            	I2C_LCD_Backlight(I2C_LCD_1);
-                I2C_LCD_SetCursor(I2C_LCD_1, 0, 0);
-                I2C_LCD_WriteString(I2C_LCD_1, "SIDEMIRROR GUIDELINE ");
-                I2C_LCD_SetCursor(I2C_LCD_1, 0, 1);
-                I2C_LCD_WriteString(I2C_LCD_1, "ALIGN UP AND DOWN ");
-                I2C_LCD_SetCursor(I2C_LCD_1, 0, 2);
-                I2C_LCD_WriteString(I2C_LCD_1, "PLACE RED LED LINE");
-                I2C_LCD_SetCursor(I2C_LCD_1, 0, 3);
-                I2C_LCD_WriteString(I2C_LCD_1, "AT HORIZON");
-                break;
-            case SEQ_3:
-            	I2C_LCD_Backlight(I2C_LCD_1);
-                I2C_LCD_SetCursor(I2C_LCD_1, 0, 0);
-                I2C_LCD_WriteString(I2C_LCD_1, "SIDEMIRROR GUIDELINE ");
-                I2C_LCD_SetCursor(I2C_LCD_1, 0, 1);
-                I2C_LCD_WriteString(I2C_LCD_1, "ALIGN LEFT AND RIGHT ");
-                I2C_LCD_SetCursor(I2C_LCD_1, 0, 2);
-                I2C_LCD_WriteString(I2C_LCD_1, "PLACE BLUE LED LINE");
-                I2C_LCD_SetCursor(I2C_LCD_1, 0, 3);
-                I2C_LCD_WriteString(I2C_LCD_1, "AT 1/4 CAR");
-                break;
-        }
-    }
+	SideMirrorPWM.motorX_pwm = 70;
+	SideMirrorPWM.motorY_pwm = 72;
+	*(&TIM1->CCR1) = SideMirrorPWM.motorX_pwm;
+	*(&TIM1->CCR2) = SideMirrorPWM.motorY_pwm;
 }
+
 
 

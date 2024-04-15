@@ -3,3 +3,4 @@
 ../Core/Src/HEADLIGHT/headlight.c:35:6:HeadLights_adjustPitch	9
 ../Core/Src/HEADLIGHT/headlight.c:62:6:HeadLights_setmotorAngle	5
 ../Core/Src/HEADLIGHT/headlight.c:88:6:HeadLights_LEDoff	1
+../Core/Src/HEADLIGHT/headlight.c:100:6:InitCarSetting_H	1

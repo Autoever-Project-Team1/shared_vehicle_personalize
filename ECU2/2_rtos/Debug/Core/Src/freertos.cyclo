@@ -1,5 +1,5 @@
-../Core/Src/freertos.c:101:6:MX_FREERTOS_Init	1
-../Core/Src/freertos.c:150:6:FsideMirrorTask	1
-../Core/Src/freertos.c:176:6:FheadLightTask	2
-../Core/Src/freertos.c:204:6:FcheckPacketTask	8
-../Core/Src/freertos.c:251:6:vTimerBlinkLEDCallback	1
+../Core/Src/freertos.c:105:6:MX_FREERTOS_Init	1
+../Core/Src/freertos.c:154:6:FsideMirrorTask	1
+../Core/Src/freertos.c:176:6:FheadLightTask	3
+../Core/Src/freertos.c:208:6:FcheckPacketTask	9
+../Core/Src/freertos.c:264:6:vTimerBlinkLEDCallback	1

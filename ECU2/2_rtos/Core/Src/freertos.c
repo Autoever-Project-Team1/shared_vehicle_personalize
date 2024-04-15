@@ -30,6 +30,7 @@
 #include "SIDEMIRROR/sidemirror.h"
 #include "HEADLIGHT/headlight.h"
 #include "timers.h"
+#include "IO/BUZZER/buzzer.h"
 
 /* USER CODE END Includes */
 
@@ -55,8 +56,11 @@ TimerHandle_t xTimerBlinkLED;
 uint8_t aaaa = 0;
 static int loadSettingValue = 0;
 static int saveSettingValue = 0;
+static int farSettingValue = 0;
 uint8_t sw1 = 0;
 uint8_t sw2 = 0;
+uint8_t buttonState = 0;
+
 
 
 /* USER CODE END Variables */
@@ -155,10 +159,6 @@ void FsideMirrorTask(void *argument)
 
   for(;;)
   {
-	  //buttonState = HAL_GPIO_ReadPin(sideMirror_Joystick_Switch_GPIO_Port, sideMirror_Joystick_Switch_Pin); // Read the current button state
-	  sw1 = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_2);
-	  sw2 = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13); // Read the current button state
-
 	  AdjustSideMirrorByJoystick();
 	  DisplayGuideline();
     osDelay(10);
@@ -178,17 +178,21 @@ void FheadLightTask(void *argument)
   /* USER CODE BEGIN FheadLightTask */
   /* Infinite loop */
 	HeadLights_initialize();
+	InitCarSetting_H();
 	for(;;)
 	{
 		if (Switch_GetState2() == 1)
 		{
 			HeadLights_control();
+			HAL_GPIO_WritePin(headLight_Laser_GPIO_Port, headLight_Laser_Pin, SET);
+			HAL_GPIO_WritePin(headLight_LED_GPIO_Port, headLight_LED_Pin, SET);
 		}
-		else
+		else if (Check_KeyState() == KEYON)
 		{
-			;
+			HAL_GPIO_WritePin(headLight_Laser_GPIO_Port, headLight_Laser_Pin, SET);
+			HAL_GPIO_WritePin(headLight_LED_GPIO_Port, headLight_LED_Pin, SET);
 		}
-		osDelay(100);
+		osDelay(10);
 
 	}
   /* USER CODE END FheadLightTask */
@@ -206,19 +210,23 @@ void FcheckPacketTask(void *argument)
   /* USER CODE BEGIN FcheckPacketTask */
   /* Infinite loop */
 	Uart_Init();
+	buzzer_init();
   for(;;)
   {
       if (Check_CloseState() == CLOSE)
       {	  // WELCOME LIGHT ON -> UNSYNC
-          if (xTimerIsTimerActive(xTimerBlinkLED) == pdFALSE) {
+          if (xTimerIsTimerActive(xTimerBlinkLED) == pdFALSE)
+          {
               xTimerStart(xTimerBlinkLED, 0);
+              farSettingValue = 0;
           }
           aaaa = CLOSE;
       }
-      else if (Check_CloseState() == FAR)
+      else if (Check_CloseState() == FAR && farSettingValue == 0)
       {	  // WELCOME LIGHT OFF
           xTimerStop(xTimerBlinkLED, 0);
           HeadLights_LEDoff();
+          farSettingValue = 1;
           aaaa = FAR;
       }
 
@@ -229,6 +237,8 @@ void FcheckPacketTask(void *argument)
 		  HeadLights_LEDoff();
 		  aaaa=KEYON;
 
+		  welcomesound();
+
 		  // LOAD USER INFO
 		  LoadUserSettings();
 		  loadSettingValue = 1;
@@ -237,9 +247,12 @@ void FcheckPacketTask(void *argument)
 	  if (Check_KeyState() == KEYOFF && saveSettingValue == 0)
 	  {
 		  SaveCurrentPWMSettings();
+		  InitCarSetting();
+		  InitCarSetting_H();
 		  aaaa=KEYOFF;
 		  loadSettingValue = 0;
 		  saveSettingValue = 1;
+
 	  }
 	  osDelay(10);
   }
@@ -252,9 +265,13 @@ void vTimerBlinkLEDCallback(TimerHandle_t xTimer) {
     static BaseType_t xLEDState = pdFALSE;
 
     xLEDState = !xLEDState;
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, xLEDState); // test led
     HAL_GPIO_WritePin(headLight_LED_GPIO_Port, headLight_LED_Pin, xLEDState);
     HAL_GPIO_WritePin(headLight_Laser_GPIO_Port, headLight_Laser_Pin, xLEDState);
+
+    HAL_GPIO_WritePin(sideMirror_LED_U_GPIO_Port, sideMirror_LED_U_Pin, xLEDState);
+    HAL_GPIO_WritePin(sideMirror_LED_D_GPIO_Port, sideMirror_LED_D_Pin, xLEDState);
+    HAL_GPIO_WritePin(sideMirror_LED_R_GPIO_Port, sideMirror_LED_R_Pin, xLEDState);
+    HAL_GPIO_WritePin(sideMirror_LED_L_GPIO_Port, sideMirror_LED_L_Pin, xLEDState);
 }
 /* USER CODE END Application */
 

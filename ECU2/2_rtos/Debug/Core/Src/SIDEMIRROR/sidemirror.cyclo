@@ -2,4 +2,5 @@
 ../Core/Src/SIDEMIRROR/sidemirror.c:31:6:AdjustSideMirrorByJoystick	1
 ../Core/Src/SIDEMIRROR/sidemirror.c:45:6:SaveCurrentPWMSettings	1
 ../Core/Src/SIDEMIRROR/sidemirror.c:54:6:LoadUserSettings	1
-../Core/Src/SIDEMIRROR/sidemirror.c:65:6:DisplayGuideline	3
+../Core/Src/SIDEMIRROR/sidemirror.c:64:6:DisplayGuideline	3
+../Core/Src/SIDEMIRROR/sidemirror.c:76:6:InitCarSetting	1

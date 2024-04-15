@@ -14,14 +14,14 @@
 #define ZERO_MIN	1900 - 300
 #define ZERO_MAX	1900 + 300
 
-#define LEFT_MIN	4095 - 300
-#define LEFT_MAX	4095
+#define LEFT_MIN	0
+#define LEFT_MAX	300
 
-#define RIGHT_MIN	0
-#define RIGHT_MAX	300
+#define RIGHT_MIN	4095 - 300
+#define RIGHT_MAX	4095
 
 #define UP_MIN		4095 - 300
-#define UP_MAX		4095
+#define UP_MAX		4095u
 
 #define DOWN_MIN	0
 #define DOWN_MAX	300
@@ -31,8 +31,8 @@
 #define PWM_INCREASE			  1
 #define PWM_DECREASE			  1
 
-#define PWM_MAX					125
-#define PWM_MIN					20
+#define PWM_MAX					80
+#define PWM_MIN					60
 
 
 #include "stm32f0xx_hal.h"

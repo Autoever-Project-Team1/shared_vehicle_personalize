@@ -1,3 +1,3 @@
 ../Core/Src/IO/SWITCH/switch.c:3:6:Switch_Init	1
 ../Core/Src/IO/SWITCH/switch.c:9:9:Switch_GetState1	3
-../Core/Src/IO/SWITCH/switch.c:26:9:Switch_GetState2	3
+../Core/Src/IO/SWITCH/switch.c:27:9:Switch_GetState2	3

@@ -4,7 +4,7 @@
 ../Core/Src/PROTOCOL/protocol.c:63:6:Check_Protocol	17
 ../Core/Src/PROTOCOL/protocol.c:116:6:TestProtocol	5
 ../Core/Src/PROTOCOL/protocol.c:149:6:Send_sideMirror	1
-../Core/Src/PROTOCOL/protocol.c:157:9:Check_CloseState	5
-../Core/Src/PROTOCOL/protocol.c:172:9:Check_KeyState	5
-../Core/Src/PROTOCOL/protocol.c:187:9:Receieve_UDsideMirror	2
-../Core/Src/PROTOCOL/protocol.c:197:9:Receieve_RLsideMirror	2
+../Core/Src/PROTOCOL/protocol.c:158:9:Check_CloseState	5
+../Core/Src/PROTOCOL/protocol.c:173:9:Check_KeyState	5
+../Core/Src/PROTOCOL/protocol.c:188:9:Receieve_UDsideMirror	5
+../Core/Src/PROTOCOL/protocol.c:199:9:Receieve_RLsideMirror	5

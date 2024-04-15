@@ -20,7 +20,7 @@ void AdjustSideMirrorByJoystick(void);
 void SaveCurrentPWMSettings(void);
 void LoadUserSettings(void);
 void DisplayGuideline(void);
-void I2C_LCD_GUIDELINE(uint8_t now_seq);
+//void I2C_LCD_GUIDELINE(uint8_t now_seq);
 
 #ifdef __cplusplus
 }

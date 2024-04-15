@@ -44,7 +44,8 @@ Core/Src/freertos.o: ../Core/Src/freertos.c \
  ../Core/Inc/PROTOCOL/protocol.h ../Core/Inc/SIDEMIRROR/sidemirror.h \
  ../Core/Inc/HEADLIGHT/headlight.h ../Core/Inc/IO/IMU/bno055.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h \
- ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+ ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
+ ../Core/Inc/IO/BUZZER/buzzer.h
 ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
 ../Core/Inc/FreeRTOSConfig.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h:
@@ -94,3 +95,4 @@ Core/Src/freertos.o: ../Core/Src/freertos.c \
 ../Core/Inc/IO/IMU/bno055.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h:
+../Core/Inc/IO/BUZZER/buzzer.h:

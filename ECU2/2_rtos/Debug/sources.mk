@@ -23,6 +23,7 @@ C_DEPS :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 Core/Src/HEADLIGHT \
+Core/Src/IO/BUZZER \
 Core/Src/IO/IMU \
 Core/Src/IO/JOYSTICK \
 Core/Src/IO/LCD \

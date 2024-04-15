@@ -23,6 +23,7 @@ RM := rm -rf
 -include Core/Src/IO/LCD/subdir.mk
 -include Core/Src/IO/JOYSTICK/subdir.mk
 -include Core/Src/IO/IMU/subdir.mk
+-include Core/Src/IO/BUZZER/subdir.mk
 -include Core/Src/HEADLIGHT/subdir.mk
 -include Core/Src/subdir.mk
 -include objects.mk

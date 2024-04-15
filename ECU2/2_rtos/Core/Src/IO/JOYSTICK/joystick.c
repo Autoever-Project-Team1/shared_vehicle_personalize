@@ -14,18 +14,18 @@ uint8_t checkJoystickState(uint32_t *adc_value)
 	}
 
 	// x axis
-	else if (adc_value[0] > LEFT_MIN && adc_value[0] < LEFT_MAX) {
+	else if (adc_value[1] >= LEFT_MIN && adc_value[1] <= LEFT_MAX) {
 		return LEFT;
 	}
-	else if (adc_value[0] >= RIGHT_MIN && adc_value[0] < RIGHT_MAX) {
+	else if (adc_value[1] >= RIGHT_MIN && adc_value[1] <= RIGHT_MAX) {
 		return RIGHT;
 	}
 	// y axis
-	if (adc_value[1] > UP_MIN && adc_value[1] < UP_MAX) {
-		return UP;
-	}
-	else if (adc_value[1] >= DOWN_MIN && adc_value[1] < DOWN_MAX) {
+	if (adc_value[0] >= UP_MIN && adc_value[0] <= UP_MAX) {
 		return DOWN;
+	}
+	else if (adc_value[0] >= DOWN_MIN && adc_value[0] <= DOWN_MAX) {
+		return UP;
 	}
 	else {
 		return ZERO;

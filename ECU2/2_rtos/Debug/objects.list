@@ -1,4 +1,5 @@
 "./Core/Src/HEADLIGHT/headlight.o"
+"./Core/Src/IO/BUZZER/buzzer.o"
 "./Core/Src/IO/IMU/bno055.o"
 "./Core/Src/IO/JOYSTICK/joystick.o"
 "./Core/Src/IO/LCD/lcd.o"

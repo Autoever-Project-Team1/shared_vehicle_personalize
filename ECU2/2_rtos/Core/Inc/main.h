@@ -93,6 +93,8 @@ void Error_Handler(void);
 #define sideMirror_motor_RL_GPIO_Port GPIOA
 #define headLight_motor_UD_Pin GPIO_PIN_10
 #define headLight_motor_UD_GPIO_Port GPIOA
+#define welcome_sound_buzzer_Pin GPIO_PIN_15
+#define welcome_sound_buzzer_GPIO_Port GPIOA
 #define headLight_IMU_SCL_Pin GPIO_PIN_6
 #define headLight_IMU_SCL_GPIO_Port GPIOB
 #define headLight_IMU_SDA_Pin GPIO_PIN_7
